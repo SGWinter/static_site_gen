@@ -78,12 +78,9 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
     for dir in dir_list:
         dir_path = os.path.join(dir_path_content, dir)
         if os.path.isfile(dir_path):
-            print(f"is file: {dir_path}")
             generate_page(dir_path, template_path, f"{dest_dir_path}/{dir.replace('.md', '.html')}")
         else:
-            print(f"is dir: {dir_path}")
             new_dest_dir_path = f"./public{dir_path.replace('./content', '')}"
-            print(new_dest_dir_path)
             if not os.path.exists(new_dest_dir_path):
                 os.mkdir(new_dest_dir_path)
             generate_pages_recursive(dir_path, template_path, new_dest_dir_path)
